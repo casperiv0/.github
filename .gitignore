@@ -1,0 +1,17 @@
+# node
+node_modules
+
+# env
+.env
+.env.local
+.env.development
+.env.production
+
+# build
+build
+dist
+.next
+
+# others
+.DS_STORE
+.vscode
