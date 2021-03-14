@@ -1,31 +1,36 @@
-module.exports = {
-  env: {
-    browser: true,
-    es6: true,
+{
+  "env": {
+    "browser": true,
+    "es6": true
   },
-  extends: [
+  "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:promise/recommended",
     "plugin:json/recommended",
+    "plugin:promise/recommended",
+    "prettier"
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: "module",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
   },
-  plugins: ["react", "@typescript-eslint", "promise"],
-  rules: {
-    quotes: ["error", "double"],
-    semi: ["error", "always"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "promise", "prettier", "json"],
+  "rules": {
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
     "no-multi-spaces": ["error"],
-    eqeqeq: ["warn", "always"],
+    "eqeqeq": ["warn", "always"],
     "no-unused-vars": ["error"],
     "no-duplicate-case": ["error"],
     "no-extra-semi": ["error"],
@@ -36,13 +41,37 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": "off",
-    "prettier/prettier": ["warn"],
-    "react/prop-types": "off",
-    "react/display-name": "off",
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   },
-  settings: {
-    react: {
-      version: "detect",
+  "overrides": [
+    {
+      "files": ["**/*.tsx", "**/*.ts"],
+      "rules": {
+        "no-unused-vars": "off",
+        "react/prop-types": "off",
+        "react/display-name": "off"
+      }
     },
-  },
-};
+    {
+      "files": ["./server/**/*.ts"],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "fragment": "Fragment",
+      "version": "detect"
+    }
+  }
+}
